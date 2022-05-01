@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import InputField from './components/InputField';
 import {Todo} from './model';
-
+import TodoList from './components/TodoList'
 
 
 const App:React.FC = () => {
@@ -26,6 +26,7 @@ const App:React.FC = () => {
        TODO LIST
     </span>
     <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
+    <TodoList todos={todos} setTodos={setTodos}/>
       </div>
   )
 }
