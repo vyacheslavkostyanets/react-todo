@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
-import InputField from './components/InputField'
+import React, { SyntheticEvent, useState } from 'react';
+import InputField from './components/InputField';
+import {Todo} from './model';
 
 
 
 const App:React.FC = () => {
 
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  console.log(todos)
+
+  const handleAdd = (e:React.FormEvent) => {
+    e.preventDefault()
+    if(todo) {
+      setTodos([...todos, {id: new Date().toLocaleString(), todo, isDone: false}]);
+      setTodo('');
+    }
+    
+  }
 
   return (
-    <div className="App">
+      <div className="App">
     <span className="heading">
-     Name
-      </span>
-       <InputField />
+       TODO LIST
+    </span>
+    <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd}/>
       </div>
   )
 }
